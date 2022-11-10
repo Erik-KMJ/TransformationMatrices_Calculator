@@ -109,102 +109,11 @@ int main()
 				scalingMatrix[2][2] = z;
 				scalingMatrix[3][3] = 1;
 
-	std::cout << "\n\n\nProjection Matrix\n\n"
-		"Input x axis projection: ";
-	std::cin >> x;
-	for (int column = 0; column < 4; column++)
-	{
-		for (int row = 0; row < 4; row++)
-		{
-			if (row == column)
-			{
-				projectionXMatrix[row][column] = 1;
-			}
-			else
-			{
-				projectionXMatrix[row][column] = 0;
-			}
-		}
-	}
-	projectionXMatrix[3][3] = 0;
-	projectionXMatrix[0][3] = 1.f / x;
-	DisplayMatrix(projectionXMatrix);
-	std::cout << "\nInput y axis projection: ";
-	std::cin >> y;
-	for (int column = 0; column < 4; column++)
-	{
-		for (int row = 0; row < 4; row++)
-		{
-			if (row == column)
-			{
-				projectionYMatrix[row][column] = 1;
-			}
-			else
-			{
-				projectionYMatrix[row][column] = 0;
-			}
-		}
-	}
-	projectionYMatrix[3][3] = 0;
-	projectionYMatrix[1][3] = 1.f / x;
-	DisplayMatrix(projectionYMatrix);
-	std::cout << "\nInput z projection: ";
-	std::cin >> z;
-	for (int column = 0; column < 4; column++)
-	{
-		for (int row = 0; row < 4; row++)
-		{
-			if (row == column)
-			{
-				projectionZMatrix[row][column] = 1;
-			}
-			else
-			{
-				projectionZMatrix[row][column] = 0;
-			}
-		}
-	}
-	projectionZMatrix[3][3] = 0;
-	projectionZMatrix[2][3] = 1.f / x;
-	DisplayMatrix(projectionZMatrix);
-				DisplayMatrix(scalingMatrix);
-			}
 
-			system("PAUSE");
-			menuSelection = 0;
-			break;
 
-		case translation:
-			std::cout << "\n\nTranslation Matrix\n\n"
-				"Input x Translation: ";
-			std::cin >> x;
-			std::cout << "\nInput y Translation: ";
-			std::cin >> y;
-			std::cout << "\nInput z Translation: ";
-			std::cin >> z;
-
-			for (int column = 0; column < 4; column++)
-			{
-				for (int row = 0; row < 4; row++)
-				{
-					if (row == column)
-					{
-						translationMatrix[row][column] = 1;
-					}
-					else
-					{
-						translationMatrix[row][column] = 0;
-					}
-				}
-			}
-			translationMatrix[3][0] = x;
-			translationMatrix[3][1] = y;
-			translationMatrix[3][2] = z;
-			DisplayMatrix(translationMatrix);
-
-			system("PAUSE");
-			menuSelection = 0;
-			break;
+				system("PAUSE");
+				menuSelection = 0;
+				break;
 
 		case rotation:
 			std::cout << "Rotation Matrix\n\n"
@@ -293,7 +202,115 @@ int main()
 			break;
 
 		case projection:
+			std::cout << "Projection Matrix\n\n"
+				"Choose axis to project about\n"
+				"1) x-axis\n"
+				"2) y-axis\n"
+				"3) z-axis\n"
+				"Selection: ";
+			std::cin >> selection;
+			if (selection == 1)
+			{
+				std::cout << "\nInput X axis projection: ";
+				std::cin >> x;
+				for (int column = 0; column < 4; column++)
+				{
+					for (int row = 0; row < 4; row++)
+					{
+						if (row == column)
+						{
+							projectionXMatrix[row][column] = 1;
+						}
+						else
+						{
+							projectionXMatrix[row][column] = 0;
+						}
+					}
+				}
+				projectionXMatrix[3][3] = 0;
+				projectionXMatrix[0][3] = 1.f / x;
+				DisplayMatrix(projectionXMatrix);
+			}
+			else if (selection == 2)
+			{
+				std::cout << "\nInput y axis projection: ";
+				std::cin >> y;
+				for (int column = 0; column < 4; column++)
+				{
+					for (int row = 0; row < 4; row++)
+					{
+						if (row == column)
+						{
+							projectionYMatrix[row][column] = 1;
+						}
+						else
+						{
+							projectionYMatrix[row][column] = 0;
+						}
+					}
+				}
+				projectionYMatrix[3][3] = 0;
+				projectionYMatrix[1][3] = 1.f / y;
+				DisplayMatrix(projectionYMatrix);
+			}
+			else if (selection == 3)
+			{
+				std::cout << "\nInput z projection: ";
+				std::cin >> z;
 
+				for (int column = 0; column < 4; column++)
+				{
+					for (int row = 0; row < 4; row++)
+					{
+						if (row == column)
+						{
+							projectionZMatrix[row][column] = 1;
+						}
+						else
+						{
+							projectionZMatrix[row][column] = 0;
+						}
+					}
+				}
+				projectionZMatrix[3][3] = 0;
+				projectionZMatrix[2][3] = 1.f / z;
+				DisplayMatrix(projectionZMatrix);
+				
+			}
+			
+			}
+
+			system("PAUSE");
+			menuSelection = 0;
+			break;
+
+		case translation:
+			std::cout << "\n\nTranslation Matrix\n\n"
+				"Input x Translation: ";
+			std::cin >> x;
+			std::cout << "\nInput y Translation: ";
+			std::cin >> y;
+			std::cout << "\nInput z Translation: ";
+			std::cin >> z;
+
+			for (int column = 0; column < 4; column++)
+			{
+				for (int row = 0; row < 4; row++)
+				{
+					if (row == column)
+					{
+						translationMatrix[row][column] = 1;
+					}
+					else
+					{
+						translationMatrix[row][column] = 0;
+					}
+				}
+			}
+			translationMatrix[3][0] = x;
+			translationMatrix[3][1] = y;
+			translationMatrix[3][2] = z;
+			DisplayMatrix(translationMatrix);
 			system("PAUSE");
 			menuSelection = 0;
 			break;
