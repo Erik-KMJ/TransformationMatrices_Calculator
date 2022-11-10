@@ -7,6 +7,7 @@ void DisplayMatrix(float matrix[4][4])
 	{
 		for (int x = 0; x < 4; x++)
 		{
+			std::cout << "|";
 			std::cout << matrix[x][y];
 		}
 		std::cout << std::endl;
@@ -73,10 +74,61 @@ int main()
 	std::cout << "\n\n\nProjection Matrix\n\n"
 		"Input x axis projection: ";
 	std::cin >> x;
+	for (int column = 0; column < 4; column++)
+	{
+		for (int row = 0; row < 4; row++)
+		{
+			if (row == column)
+			{
+				projectionXMatrix[row][column] = 1;
+			}
+			else
+			{
+				projectionXMatrix[row][column] = 0;
+			}
+		}
+	}
+	projectionXMatrix[3][3] = 0;
+	projectionXMatrix[0][3] = 1.f / x;
+	DisplayMatrix(projectionXMatrix);
 	std::cout << "\nInput y axis projection: ";
 	std::cin >> y;
+	for (int column = 0; column < 4; column++)
+	{
+		for (int row = 0; row < 4; row++)
+		{
+			if (row == column)
+			{
+				projectionYMatrix[row][column] = 1;
+			}
+			else
+			{
+				projectionYMatrix[row][column] = 0;
+			}
+		}
+	}
+	projectionYMatrix[3][3] = 0;
+	projectionYMatrix[1][3] = 1.f / x;
+	DisplayMatrix(projectionYMatrix);
 	std::cout << "\nInput z projection: ";
 	std::cin >> z;
+	for (int column = 0; column < 4; column++)
+	{
+		for (int row = 0; row < 4; row++)
+		{
+			if (row == column)
+			{
+				projectionZMatrix[row][column] = 1;
+			}
+			else
+			{
+				projectionZMatrix[row][column] = 0;
+			}
+		}
+	}
+	projectionZMatrix[3][3] = 0;
+	projectionZMatrix[2][3] = 1.f / x;
+	DisplayMatrix(projectionZMatrix);
 
 	// set matrix here
 
